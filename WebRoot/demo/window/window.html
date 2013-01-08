@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Window 弹出面板</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link href="../demo.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../scripts/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="../../scripts/miniui/miniui.js" type="text/javascript"></script><link href="../../scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" />
+    <link href="../../scripts/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+<body>
+    <h1>Window 弹出面板</h1>      
+    
+<input type="button" value="弹出面板" onclick="showWindow()"/>
+<div id="win1" class="mini-window" title="Window" style="width:300px;height:200px;" 
+    showMaxButton="true" 
+    showToolbar="true" showFooter="true" showModal="true" allowResize="true" allowDrag="true"
+    >
+    <div property="toolbar" style="padding:5px;">
+        <input type='button' value='Toolbar' style='vertical-align:middle;'/>
+    </div>
+    <div property="footer">
+        <input type='button' value='Footer' style='vertical-align:middle;'/>
+    </div>
+
+    1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />1<br />
+</div>
+
+<script type="text/javascript">
+    mini.parse();
+    function showWindow() {
+        var win = mini.get("win1");
+        win.show();
+    }
+    
+</script>
+
+    <div class="description">
+        <h3>Description</h3>
+        <p>
+        </p>
+    </div>
+</body>
+</html>

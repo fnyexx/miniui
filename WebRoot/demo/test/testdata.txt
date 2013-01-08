@@ -1,0 +1,50 @@
+﻿{
+	tabs: [
+		{
+			title: "Tab1",
+			url: "1.html"
+		},
+		{
+			title: "Tab2",
+			url: "2.html"
+		}
+	],
+	combobox: [
+		{ id: "usa", text: "美国" },
+		{ id: "cn", text: "中国" },
+		{ id: "jp", text: "日本" },
+		{ id: "en", text: "英国" },
+		{ id: "de", text: "德国" },
+		{ id: "fr", text: "法国" },
+		{ id: "ca", text: "加拿大" },
+		{ id: "at", text: "奥地利" },
+		{ id: "ch", text: "瑞士" }
+	],
+	tree: [
+		{ text: "文件", 
+			children: [
+				{ text: "新建", iconCls: "icon-new",
+					items: [
+						{ text: "文件"},
+						{ text: "文件夹"}
+					]
+				},
+				{ text: "打开"},
+				{ text: "保存"},
+				{ text: "关闭"}
+			]
+		},
+		{text: "编辑",
+			children: [	
+				{ text: "剪切", iconCls: "icon-cut"},
+				{ text: "复制"},
+				{ text: "粘贴"}
+			]
+		},
+		{text: "查看"
+		},
+		{text: "帮助", iconCls: "icon-help"
+		}
+	]
+
+}

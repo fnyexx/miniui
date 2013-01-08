@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery MiniUI V2.0 Demo</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="jquery,web,grid,表格,datagrid,js,javascript,ajax,web开发,tree,table" />
+    <meta name="description" content="jQuery MiniUI - 快速开发WebUI。它能缩短开发时间，减少代码量，使开发者更专注于业务和服务端，轻松实现界面开发，带来绝佳的用户体验。" />
+    
+    <script src="../scripts/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="../scripts/miniui/miniui.js" type="text/javascript"></script>
+    <link href="../scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" />
+
+    <script src="core.js" type="text/javascript"></script>
+
+    <!---->
+    <script src="CommonLibs/UserSelectWindow.js" type="text/javascript"></script>
+    <script src="CommonLibs/EditForm.js" type="text/javascript"></script>
+
+    <style type="text/css">
+    html, html body
+    {
+        padding:0;border:0;margin:0;
+        width:100%;height:100%;overflow:hidden;
+        font-family:Verdana;
+        font-size:12px;    
+        line-height:22px;
+    }
+    .header
+    {
+        background:url(header.gif) repeat-x;
+    }
+    .header div
+    {
+        font-family:'Trebuchet MS',Arial,sans-serif;
+        font-size:25px;line-height:60px;padding-left:10px;font-weight:bold;color:#333;        
+    }
+
+    
+    body .header .topNav
+    {
+        position:absolute;right:8px;top:10px;        
+        font-size:12px;
+        line-height:25px;
+    }
+    .header .topNav a
+    {
+        text-decoration:none;
+        color:#222;
+        font-weight:normal;
+        font-size:12px;
+        line-height:25px;
+        margin-left:3px;
+        margin-right:3px;
+    }
+    .header .topNav a:hover
+    {
+        text-decoration:underline;
+        color:Blue;
+    }   
+     .mini-layout-region-south img
+    {
+        vertical-align:top;
+    }
+    </style>
+</head>
+<body>
+<div class="mini-layout" style="width:100%;height:100%;">
+    <div title="north" region="north" class="header" bodyStyle="overflow:hidden;" height="80" showHeader="false" allowResize="false">
+        <div>jQuery MiniUI Demo</div>
+
+        <div class="topNav">    
+            <a href="../index.html">首页</a> |
+            <a href="../demo/index.html">在线示例</a> |
+            <a href="../docs/api/index.html">Api手册</a> |            
+            <a href="http://www.miniui.com/docs/tutorial/index.html">开发教程</a> |
+            <a href="http://www.miniui.com/docs/quickstart/index.html">快速入门</a>
+        </div>
+
+        <div style="position:absolute;right:12px;bottom:5px;font-size:12px;line-height:25px;font-weight:normal;">
+            <span style="color:Red;font-family:Tahoma">（推荐Blue）</span>选择皮肤：
+            <select id="selectSkin" onchange="onSkinChange(this.value)" style="width:100px;" >
+                <option value="default">Default</option>
+                <option value="blue">Blue</option>
+                <option value="gray">Gray</option>
+                <option value="olive2003">Olive2003</option>
+                <option value="blue2003">Blue2003</option>
+                <option value="blue2010">Blue2010</option>
+            </select>
+        </div>
+    </div>
+    <div showHeader="false" region="south" style="border:0;text-align:center;" height="25" showSplit="false">
+        Copyright © 上海普加软件有限公司版权所有 
+    </div>
+    <div region="west" title="在线演示" showHeader="true" bodyStyle="padding-left:1px;" width="230" minWidth="100" maxWidth="350">
+        <ul id="demoTree" class="mini-tree" showTreeIcon="true" showTreeLines="true" style="width:100%;height:100%;" enableHotTrack="false">
+            <li><a href="overview.html" target="main">Overview</a></li>
+            <li>
+			    <span expanded="true">典型应用</span>
+			    <ul>    
+                    <li><a href="desktop/index.html" target="_blank" >DeskTop 桌面应用 </a></li>                    
+                    <li><a href="portal/index.html" target="main" >Portal 门户 </a></li>
+                    <li><a href="filemanager/index.html" target="main" >文档管理器 <span style="color:Red;">New!</span></a></li>
+                    <li>
+			            <span value="crud" expanded="false">弹出面板 <span style="color:Red;">New!</span></span>
+			            <ul>
+                            <li><a href="datagrid/datagrid.html" target="main" >弹出编辑面板（子页面）</a></li>
+                            <li><a href="buttonedit/openpage.html" target="main" >弹出选择面板（子页面）</a></li>
+                            <li><a href="buttonedit/openwindow.html" target="main" >弹出选择面板（自定义类）</a></li>
+                            <li><a href="buttonedit/openselecttree.html" target="main" >弹出选择树形 <span style="color:Red;">New!</span></a></li>
+                        </ul>
+                    </li> 
+                    <li>
+			            <span value="layout" expanded="false">界面布局 <span style="color:Red;">New!</span></span>
+			            <ul>                            
+                            <li><a href="outlooktree/outlooktree.html" target="_blank" >折叠树（左侧）</a></li>
+                            <li><a href="outlookmenu/outlookmenu.html" target="_blank" >折叠菜单（左侧）</a></li>  
+                            <li><a href="tree/navtree.html" target="_blank" >导航树（左侧）</a></li>                           
+                            <li><a href="menu/menubar.html" target="_blank" >下拉菜单（顶部）</a></li>
+                             <li>
+			                    <span value="crud" expanded="false">懒加载页面 </span>
+			                    <ul>
+				                    <li><a href="tabs/load.html" target="main" >Tabs（LazyLoad）</a></li>
+                                    <li><a href="panel/load.html" target="main" >Panel（LazyLoad）</a></li>
+                                    <li><a href="include/include.html" target="main" e">Include</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="layout/loginLayout.html" target="_blank" >登录页面</a></li>
+                            <li><a href="panel/panelLayout.html" target="_blank" >Panel布局  <span style="color:Red;">New!</span></a></li>
+                            <li><a href="tabs/tabsLayout.html" target="_blank" >Tabs布局  <span style="color:Red;">New!</span></a></li>
+                        </ul>
+                    </li>                
+                    <li>
+			            <span value="crud" expanded="false">CRUD</span>
+			            <ul>
+				            <li><a href="datagrid/crud.html" target="main">CRUD</a></li>                        
+                            <li><a href="datagrid/rowedit.html" target="main">CRUD：单元格编辑器</a></li>                        
+                            <li><a href="datagrid/editform.html" target="main">CRUD：编辑表单</a></li>
+                            <li><a href="datagrid/popupeditform.html" target="main">CRUD：弹出面板</a></li>
+                            <li><a href="datagrid/rowedit_lookup.html" target="main">Lookup Editor</a></li>
+                            <li><a href="datagrid/rowedit_openwindow.html" target="main">OpenWindow Editor</a></li>
+                            <li><a href="datagrid/rowedit_openpage.html" target="main">OpenPage Editor</a></li>
+                            <li><a href="datagrid/rowedit_textboxlist.html" target="main">TextBoxList Editor</a></li>
+                        </ul>
+                    </li>
+                    <li>
+			            <span value="master-detail" expanded="false">Master-Detail</span>
+			            <ul>
+                            <li><a href="datagrid/detailform.html" target="main">Detail Form</a></li>
+                            <li><a href="datagrid/detailgrid.html" target="main">Detail Grid</a></li>
+                            <li><a href="datagrid/detailtabs.html" target="main">Detail Tabs</a></li>
+                            <li><a href="datagrid/inline_detailform.html" target="main">Inline Form</a></li>
+                            <li><a href="datagrid/inline_detailgrid.html" target="main">Inline Grid</a></li>
+                            <li><a href="datagrid/inline_detailtabs.html" target="main">Inline Tabs</a></li>
+                            <li><a href="datagrid/popupeditform.html" target="main">Popup Form</a></li>
+                        </ul>
+                    </li>
+                    <li>
+			            <span value="validator" expanded="false">数据验证 <span style="color:Red;">New!</span></span>
+			            <ul>
+                            <li><a href="form/rules.html" target="main" title="验证规则">验证规则 <span style="color:Red;">New!</span></a></li> 
+                            <li><a href="form/validation.html" target="main" title="数据验证">表单：验证</a></li>
+                            <li><a href="form/validLabel.html" target="main" title="文本显示">表单：文本显示</a></li>
+                            <li><a href="form/validGroup.html" target="main" title="组合验证">表单：组合验证</a></li> 
+                            <li><a href="form/validWindow.html" target="main" title="弹出框验证">表单：弹出框验证</a></li> 
+
+                        </ul>
+                    </li>
+ 
+                                     
+			    </ul>
+		    </li>  
+            <li>
+			    <span >控件演示</span>
+			    <ul>                                       
+                    <li><a href="messagebox.html" target="main">MessageBox</a></li>
+                    <li><a href="treegrid/treegrid.html" target="main">TreeGrid <span style="color:Red;">New!</span></a></li>
+                    <li><a href="textboxlist/textboxlist.html" target="main" title="多选输入框">TextBoxList <span style="color:Red;">New!</span></a></li>                    
+                    <li>
+			            <span expanded="false">表单控件</span>
+			            <ul>                             
+                            <li>
+                                <span value="form" expanded="false">Form</span>
+                                <ul>
+				                    <li><a href="form/form.html" target="main" title="按钮">Form</a></li>
+                                    <li><a href="form/rules.html" target="main" title="验证规则">Validation Rules <span style="color:Red;">New!</span></a></li> 
+                                    <li><a href="form/validation.html" target="main" title="数据验证">Validation</a></li>
+                                    <li><a href="form/validLabel.html" target="main" title="文本显示">Validation Label</a></li>
+                                    <li><a href="form/validGroup.html" target="main" title="组合验证">Validation Summary</a></li>                                    
+                                    <li><a href="form/validWindow.html" target="main" title="弹出框验证">Validation Window</a></li>                                     
+			                    </ul>
+                            </li>
+				            <li>
+                                <span value="button" expanded="false">Button</span>
+                                <ul>
+				                    <li><a href="button/button.html" target="main" title="按钮">Button</a></li>
+                                    <li><a href="button/menubutton.html" target="main" title="下拉菜单按钮">MenuButton</a></li>
+                                    <li><a href="button/radiobutton.html" target="main" title="按钮单选组">RadioButton</a></li>
+                                    <li><a href="toolbar/toolbar.html" target="main" title="工具栏按钮">Toolbar</a></li>
+			                    </ul>
+                            </li>
+                            <li><a href="autocomplete/autocomplete.html" target="main" title="文本自动填充框">AutoComplete <span style="color:Red;">New!</span></a></li>
+                            <li><a href="treeselect/treeselect.html" target="main" title="树形下拉选择框" >TreeSelect</a></li>
+                            <li><a href="treeselect/lazy.html" target="main" title="懒加载树形下拉框" >TreeSelect(Lazy) <span style="color:Red;">New!</span></a></li>
+                            <li><a href="combobox/combobox.html" target="main" title="下拉选择框">ComboBox</a></li>
+                            <li><a href="combobox/linkage-combo.html" target="main" title="联动选择ComboBox">ComboBox(联动选择)</a></li>
+                            <li><a href="datepicker/datepicker.html" target="main" title="日期选择框">DatePicker</a></li>
+                            <li><a href="lookup/lookup.html" target="main" title="下拉搜索框" >Lookup <span style="color:Red;">New!</span></a></li>	
+                            <li><a href="buttonedit/openpage.html" target="main" >OpenSelect(Page) <span style="color:Red;">New!</span></a></li>
+                            <li><a href="buttonedit/openwindow.html" target="main" >OpenSelect(Class)</a></li>	     
+
+				            <li value="checkbox"><a href="checkbox/checkbox.html" target="main" title="复选框">CheckBox</a></li>
+			                  
+                            
+				            <li><a href="listbox/listbox.html" target="main" title="列表框">ListBox</a></li>
+                            <li><a href="listbox/moveitems.html" target="main" title="在两个列表框之间选中移动项">ListBox(Move Items)</a></li>
+			                  
+				            <li><a href="checkboxlist/checkboxlist.html" target="main" title="多选框组">CheckBoxList</a></li>
+			               
+				            <li><a href="radiobuttonlist/radiobuttonlist.html" target="main" title="单选框组">RadioButtonList</a></li>
+			                 
+                         
+				            <li><a href="calendar/calendar.html" target="main" title="日期选择器">Calendar</a></li>
+			               
+				            <li><a href="buttonedit/buttonedit.html" target="main" title="按钮输入框">ButtonEdit</a></li>
+			                        
+				            <li><a href="textbox/textbox.html" target="main" title="单行输入框">TextBox</a></li>
+                            <li><a href="textbox/textbox.html" target="main" title="密码输入框">Password</a></li>
+                            <li><a href="textbox/textbox.html" target="main" title="多行输入框">TextArea</a></li>			                				            			                   				            
+			                    
+				            <li><a href="spinner/spinner.html" target="main" title="数字输入框">Spinner</a></li>
+			              
+				            <li><a href="timespinner/timespinner.html" target="main" title="时间输入框">TimeSpinner</a></li>			                       				            
+			                  				                                        		              
+				            <li><a href="fileupload/htmlfile.html" target="main" title="文件上传选择框(HTML版本)">HtmlFile</a></li>
+                            <li><a href="fileupload/fileupload.html" target="main" title="文件上传选择框(FLASH版本)">FileUpload</a></li>		          
+                            
+			            </ul>
+		            </li>
+                    <li>
+			            <span expanded="false">数据表格</span>
+			            <ul>
+				            <li><a href="datagrid/datagrid.html" target="main">Base Example</a></li>
+                            <li><a href="datagrid/crud.html" target="main">CRUD <span style="color:Red;">New!</span></a></li>                        
+                            <li><a href="datagrid/grouping.html" target="main">Grouping <span style="color:Red;">New!</span></a></li>  
+                            <li><a href="datagrid/mergecells.html" target="main">mergeCells <span style="color:Red;">New!</span></a></li>  
+                            <li><a href="datagrid/pager.html" target="main">Pagination</a></li>
+                            <li><a href="datagrid/diypager.html" target="main">Diy Pagination <span style="color:Red;">New!</span></a></li>
+                            <li><a href="datagrid/sorting.html" target="main">Sorting</a></li>
+                            <li><a href="datagrid/multiselect.html" target="main">Multi Select</a></li>
+                            <li><a href="datagrid/contextmenu.html" target="main">ContextMenu</a></li>
+                            <li><a href="datagrid/export.html" target="main">Export Excel</a></li>                            
+                            <li><a href="datagrid/fitsize.html" target="_blank">Fit Size</a></li>   
+                            <li><a href="datagrid/staticedit.html" target="main">StaticEdit <span style="color:Red;">New!</span></a></li>                         
+                            <li>
+			                    <span expanded="false">Grid Rows</span>
+			                    <ul>
+                                    <li><a href="datagrid/filter.html" target="main">Filter Row</a></li>
+                                    <li><a href="datagrid/summary.html" target="main">Data Summary</a></li>                                    
+                                    <li><a href="datagrid/alternating.html" target="main">Alternating Row Style</a></li>
+                                    <li><a href="datagrid/gridlines.html" target="main">Grid Lines</a></li>
+                                    <li><a href="datagrid/rowdetail.html" target="main">Row Detail</a></li>                                    
+                                    <!--<li><a href="datagrid/preview.html" target="main">Preview Row</a></li>-->
+                                    <li><a href="datagrid/rowtemplate.html" target="main">Row Template</a></li>                                    
+                                </ul>
+                            </li>   
+                            <li>
+			                    <span expanded="false">Grid Columns</span>
+			                    <ul>
+                                    <li><a href="datagrid/fixedcolumns.html" target="main">Fixed Columns</a></li>
+                                    <li><a href="datagrid/columngroup.html" target="main">Column Group</a></li>                                    
+                                    <li><a href="datagrid/drawcell.html" target="main">Draw Cell</a></li>                                    
+                                    <li><a href="datagrid/hidecolumn.html" target="main">Show/Hide Column</a></li>
+                                    <!--<li><a href="datagrid/movecolumn.html" target="main">Move Column</a></li>
+                                    <li><a href="datagrid/resizecolumn.html" target="main">Resize Column</a></li>-->
+                                </ul>
+                            </li>   
+                            <li>
+			                    <span expanded="false">Grid Edit</span>
+			                    <ul>
+                                    <li><a href="datagrid/rowedit.html" target="main">RowEdit</a></li>
+                                    <li><a href="datagrid/editform.html" target="main">EditForm</a></li>
+                                    <li><a href="datagrid/popupeditform.html" target="main">Popup EditForm</a></li>
+                                    <li><a href="datagrid/rowedit_lookup.html" target="main">Lookup Editor</a></li>
+                                    <li><a href="datagrid/rowedit_openwindow.html" target="main">OpenWindow Editor</a></li>
+                                    <li><a href="datagrid/rowedit_openpage.html" target="main">OpenPage Editor</a></li>
+                                    <li><a href="datagrid/rowedit_textboxlist.html" target="main">TextBoxList Editor</a></li>                                    
+                                </ul>
+                            </li>   
+                            <li>
+			                    <span expanded="false">Master-Detail</span>
+			                    <ul>
+                                    <li><a href="datagrid/detailform.html" target="main">Detail Form</a></li>
+                                    <li><a href="datagrid/detailgrid.html" target="main">Detail Grid</a></li>
+                                    <li><a href="datagrid/detailtabs.html" target="main">Detail Tabs</a></li>
+                                    <li><a href="datagrid/inline_detailform.html" target="main">Inline Form</a></li>
+                                    <li><a href="datagrid/inline_detailgrid.html" target="main">Inline Grid</a></li>
+                                    <li><a href="datagrid/inline_detailtabs.html" target="main">Inline Tabs</a></li>
+                                    <li><a href="datagrid/popupeditform.html" target="main">Popup Form</a></li>
+                                </ul>
+                            </li>
+                            <!-- <li>
+			                    <span expanded="false">Exporting Data</span>
+			                    <ul>
+                                    
+                                </ul>
+                            </li>-->
+			            </ul>
+		            </li>
+                    <li>
+			            <span expanded="false">树形控件</span>
+			            <ul>
+				            <li><a href="tree/tree.html" target="main">Base Example</a></li>
+                            <li><a href="tree/list2tree.html" target="main">List to Tree</a></li>
+                            <li><a href="tree/createtree.html" target="main">Create Tree</a></li>
+                            <li><a href="tree/lazytree.html" target="main">Lazy Tree <span style="color:Red;">New!</span></a></li>                            
+                            <li><a href="tree/CheckBoxTree.html" target="main">CheckBox Tree</a></li>
+                            <li><a href="tree/selection.html" target="main">Selection</a></li>
+                            <li><a href="tree/contextmenu.html" target="main">ContextMenu</a></li>
+                            <li><a href="tree/navtree.html" target="main">Navigation Tree</a></li>
+                            <li><a href="tree/actiontree.html" target="main">Add/Remove/Update Node</a></li>
+                            <li><a href="tree/collapsetree.html" target="main">Expand/Collapse</a></li>				            
+                            <li><a href="tree/drawnode.html" target="main">Draw Node</a></li>
+                            <!--<li><a href="tree/dragdrop.html" target="main">DragDrop Node</a></li>-->
+                            <li><a href="tree/movenode.html" target="main">MoveNode Window</a></li>
+                            <li><a href="tree/dragdrop.html" target="main">DragDrop Node</a></li>
+                            <li><a href="tree/autocollapse.html" target="main">AutoCollapse</a></li>
+                            <li><a href="treegrid/treegrid.html" target="main">TreeGrid <span style="color:Red;">New!</span></a></li>
+                            <li><a href="treegrid/drawcell.html" target="main">TreeGrid:DrawCell</a></li>
+                            <li><a href="treegrid/lazytree.html" target="main">TreeGrid:LazyLoad</a></li>
+                            <li><a href="treegrid/dragdrop.html" target="main">TreeGrid:DragDrop</a></li>
+			            </ul>
+		            </li>
+                
+                    <li>
+			            <span expanded="false">布局控件</span>
+			            <ul>
+				            <li><a href="panel/panel.html" target="main">Panel</a></li>        
+                            <li><a href="panel/load.html" target="main">Panel（LazyLoad）</a></li> 
+                            <li><a href="panel/panelLayout.html" target="_blank" >Panel Layout  <span style="color:Red;">New!</span></a></li>                            
+                               
+                            <li><a href="window/window.html" target="main">Window <span style="color:Red;">New!</span></a></li>                           
+                            <li><a href="splitter/splitter.html" target="main">Splitter</a></li>
+                            <li><a href="layout/layout.html" target="main">Layout</a></li>                                          
+                            <li><a href="formLayout/formLayout.html" target="main">Form Layout</a></li>                            
+			            </ul>
+		            </li>     
+                    <li>
+			            <span expanded="false">导航控件</span>
+			            <ul>
+                            <li><a href="pager/pager.html" target="main">Pager</a></li> 				            
+                            <li><a href="outlookbar/outlookbar.html" target="main">OutlookBar</a></li>    
+                            <li><a href="outlookmenu/outlookmenu.html" target="_blank" >OutlookMenu</a></li> 
+                            <li><a href="outlooktree/outlooktree.html" target="_blank" >OutlookTree</a></li>                        
+                            <li><a href="tree/navtree.html" target="_blank">Tree</a></li>
+                            <li><a href="tabs/tabs.html" target="main">Tabs</a></li>
+                            <li><a href="tabs/tabs2.html" target="main">Tabs (Add/Remove)</a></li>
+                            <li><a href="tabs/load.html" target="main" title="Tabs（动态页面）">Tabs（动态页面）</a></li>
+                            <li><a href="tabs/tabsLayout.html" target="_blank" >Tabs Layout  <span style="color:Red;">New!</span></a></li>
+                            <li><a href="tabs/contextmenu.html" target="main" >Tabs ContextMenu <span style="color:Red;">New!</span></a></li>
+                            
+				            <li><a href="menu/menu.html" target="main">Menu</a></li>
+                            <li><a href="menu/menubar.html" target="main">MenuBar (Load)</a></li> 
+                            <li><a href="menu/contextmenu.html" target="main">ContextMenu</a></li>    
+                            <li><a href="datagrid/contextmenu.html" target="main">ContextMenu（DataGrid）</a></li>   
+                            <li><a href="tree/contextmenu.html" target="main">ContextMenu（TreeGrid）</a></li>                                                                                            
+                            <li><a href="toolbar/toolbar.html" target="main">Toolbar</a></li>                                                                                                   
+			            </ul>
+		            </li>
+                    <li>
+                        <span expanded="false">第三方控件</span>
+                        <ul>
+                            <li>
+                                <span expanded="false">KindEditor</span>
+                                <ul>                                    
+                                    <li><a href="kindeditor/kindeditor.html" target="main">KindEditor</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span expanded="false">CKEditor</span>
+                                <ul>                                    
+                                    <li><a href="ckeditor/ckeditor.html" target="main">CKEditor</a></li>
+                                </ul>
+                            </li>
+                             <li>
+                                <span expanded="false">Open Flash Chart</span>
+                                <ul>
+                                    <li><a href="open-flash-chart/overview.html" target="main" title="LineChart">Overview</a></li>
+                                    <li><a href="open-flash-chart/lineChart.html" target="main" title="LineChart">LineChart</a></li>
+                                    <li><a href="open-flash-chart/barChart.html" target="main" title="BarChart">BarChart</a></li>
+                                    <li><a href="open-flash-chart/barChart3D.html" target="main" title="BarChart 3D">BarChart 3D</a></li>
+                                    <li><a href="open-flash-chart/columnChart.html" target="main" title="ColumnChart">ColumnChart</a></li>
+                                    <li><a href="open-flash-chart/pieChart.html" target="main" title="PieChart">PieChart</a></li>
+                                    <li><a href="open-flash-chart/radarChart.html" target="main" title="RadarChart">RadarChart</a></li>
+                                    <li><a href="open-flash-chart/candleChart.html" target="main" title="CandleChart">CandleChart</a></li>
+                                    <li><a href="open-flash-chart/scatterChart.html" target="main" title="ScatterChart">ScatterChart</a></li>
+                                    <li><a href="open-flash-chart/StackedBarChart.html" target="main" title="Stacked Bar Chart">Stacked Bar Chart</a></li>
+                                    <li><a href="open-flash-chart/tags.html" target="main" title="Tags">Tags</a></li>
+                                    <li><a href="open-flash-chart/combinedChart.html" target="main" title="Combined Chart">Combined Chart</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span expanded="false">YUI Chart</span>
+                                <ul>
+                                    <li><a href="YUI2/overview.html" target="main" title="Overview">Overview</a></li>
+                                    <li><a href="YUI2/lineChart.html" target="main" title="LineChart">LineChart</a></li>
+                                    <li><a href="YUI2/barChart.html" target="main" title="BarChart">BarChart</a></li>
+                                    <li><a href="YUI2/columnChart.html" target="main" title="ColumnChart">ColumnChart</a></li>
+                                    <li><a href="YUI2/pieChart.html" target="main" title="PieChart">PieChart</a></li>
+                                    <li><a href="YUI2/DualAxesChart.html" target="main" title="Dual Axes Chart">Dual Axes Chart</a></li>
+                                    <li><a href="YUI2/StackedBarChart.html" target="main" title="Stacked Bar Chart">Stacked Bar Chart</a></li>
+                                    <li><a href="YUI2/CustomizeSeriesItems.html" target="main" title="Customize series items">Customize series items</a></li>
+                                    <li><a href="YUI2/CustomSkin.html" target="main" title="Custom skin">Custom skin</a></li>
+                                    <li><a href="YUI2/StylingLines,BordersAndFills.html" target="main" title="Styling Lines, Borders and Fills">Styling Lines, Borders and Fills</a></li>
+                                </ul>
+                            </li>
+                           
+                        </ul>
+                    </li>			                                           
+                        
+                </ul>
+            </li>
+     
+        </ul>        
+    </div>
+    <div title="center" region="center" style="border:0;">
+        <div id="mainTabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" 
+            onactivechanged="onTabsActiveChanged"
+        >
+            <div title="Demo">
+                <iframe onload="onIFrameLoad()" src="overview.html" id="mainframe" frameborder="0" name="main" style="width:100%;height:100%;" border="0"></iframe>
+            </div>
+            <div title="Code">
+                <iframe id="codeframe" frameborder="0" name="code" style="width:100%;height:100%;" border="0"></iframe>
+            </div>
+        </div>        
+    </div>
+
+    
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    mini.parse();
+</script>
+
+<script src="../scripts/tongji.js" type="text/javascript"></script>

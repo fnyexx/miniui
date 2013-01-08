@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DeskTop</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="../../scripts/jquery-1.6.2.min.js" type="text/javascript"></script>
+<script src="../../scripts/miniui/miniui.js" type="text/javascript"></script>
+<link href="../../scripts/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css" />
+<link href="../../scripts/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+
+<script src="js/DeskTop.js" type="text/javascript"></script>
+<script src="js/Window.js" type="text/javascript"></script>
+<link href="js/desktop.css" rel="stylesheet" type="text/css" />
+
+<!-- windows -->
+<script src="js/windows/IFrameWindow.js" type="text/javascript"></script>
+<script src="js/windows/GridWindow.js" type="text/javascript"></script>
+<script src="js/windows/TabsWindow.js" type="text/javascript"></script>
+<script src="js/windows/SplitterWindow.js" type="text/javascript"></script>
+<script src="js/windows/MapWindow.js" type="text/javascript"></script>
+<script src="js/windows/ChartWindow.js" type="text/javascript"></script>
+
+<!--map-->
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+
+<!--chart-->
+<script src="../open-flash-chart/open-flash-chart/swfobject.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var modules = [
+        { name: "iframe", text: "Test", iconCls: "desk-window", title: "", type: "ux.iframewindow", url: "/miniui/demo/datagrid/datagrid.html" },
+        { name: "simple", text: "Window", iconCls: "desk-window", title: "Window", type: "ux.window" },
+        { name: "iframe", text: "IFrame Window", iconCls: "desk-window", title: "", type: "ux.iframewindow", url: "http://www.baidu.com" },
+        { name: "grid", text: "Grid Window", iconCls: "desk-window", title: "", type: "ux.gridwindow" },
+        { name: "splitter", text: "Splitter Window", iconCls: "desk-window", title: "", type: "ux.splitterwindow" },
+        { name: "tabs", text: "Tabs Window", iconCls: "desk-window", title: "", type: "ux.tabswindow" },        
+        { name: "map", text: "Map Window", iconCls: "desk-window", title: "", type: "ux.mapwindow" },
+        { name: "chart", text: "Chart Window", iconCls: "desk-window", title: "", type: "ux.chartwindow" }
+    ];
+    /////////////////////////////////////////////////
+
+    //desktop
+    var desk = new mini.ux.DeskTop();
+    desk.render(document.body);
+
+    //modules
+    desk.setModules(modules);
+
+    //module click
+    desk.on("moduleclick", function (e) {
+        var module = e.module;
+
+        var win = module.single;
+        if (!win) {
+            win = module.single = desk.createWindow(module.type);
+            if (win) {
+                if (win.type == "ux.iframewindow") {
+                    win.setUrl(module.url);
+                }
+            }
+        }
+        if (win) {
+            desk.showWindow(win);
+
+        }
+    });
+</script>
